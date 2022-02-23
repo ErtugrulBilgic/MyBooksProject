@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My Books Project</string>
+    <string name="book_name">Book Name</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec sagittis nunc. Quisque
+        tristique mauris ac scelerisque consectetur.
+        Donec mauris turpis, pulvinar ac est non, hendrerit molestie mauris.
+    </string>
+    <string name="author_name">Author Name</string>
+    <string name="todo">TODO</string>
+    <string name="add_new_book">Add new book</string>
+    <string name="delete">Delete</string>
+    <string name="description">Description</string>
+    <string name="close">Close</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="for_closing_app">for closing app</string>
+    <string name="delete_book">Delete book</string>
+    <string name="pic_of_book">Pic of book</string>
+</resources>
