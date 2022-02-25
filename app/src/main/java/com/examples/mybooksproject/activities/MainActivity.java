@@ -1,4 +1,4 @@
-package com.examples.mybooksproject;
+package com.examples.mybooksproject.activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -25,6 +25,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.examples.mybooksproject.classes.Book;
+import com.examples.mybooksproject.adepter.BookAdepter;
+import com.examples.mybooksproject.classes.Bridge;
+import com.examples.mybooksproject.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         list = findViewById(R.id.list);
+
         adapter = new BookAdepter(Book.getData(this),this);
         list.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
@@ -74,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new BookAdepter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                bookDetail = new Bridge(book.getName(),book.getAuthorName(),book.getDescription(),book.getPic());
-                Intent intent = new Intent(MainActivity.this,BookActivity.class);
+                bookDetail = new Bridge(book.getName(),book.getAuthorName(),book.getDescription(),book.getPic(),book.getId());
+                Intent intent = new Intent(MainActivity.this, BookActivity.class);
                 startActivity(intent);
+                finish();
+
 
 
 
@@ -280,4 +287,6 @@ public class MainActivity extends AppCompatActivity {
         return Bitmap.createScaledBitmap(pic,55,62,true);
 
     }
+
+
 }

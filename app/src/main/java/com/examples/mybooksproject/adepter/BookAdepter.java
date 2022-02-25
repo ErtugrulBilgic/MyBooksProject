@@ -1,4 +1,4 @@
-package com.examples.mybooksproject;
+package com.examples.mybooksproject.adepter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.examples.mybooksproject.classes.Book;
+import com.examples.mybooksproject.R;
 
 import java.util.ArrayList;
 
@@ -73,6 +75,7 @@ public class BookAdepter extends RecyclerView.Adapter<BookAdepter.BookHolder> {
             this.txtBookAuthor.setText(book.getAuthorName());
             this.txtBookDescription.setText(book.getDescription());
             this.imgBookPic.setImageBitmap(book.getPic());
+
 
 
 

@@ -1,7 +1,8 @@
-package com.examples.mybooksproject;
+package com.examples.mybooksproject.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -13,10 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.examples.mybooksproject.R;
 
 import java.util.Arrays;
 
@@ -33,6 +34,13 @@ public class BookActivity extends AppCompatActivity {
     private Bitmap pic;
 
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        finish();
+        startActivity(intent);
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,8 +94,6 @@ public class BookActivity extends AppCompatActivity {
 
 
 
-
-
     }
 
     public void alertDialog() {
@@ -107,7 +113,10 @@ public class BookActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 try {
                     SQLiteDatabase database = openOrCreateDatabase("Books",MODE_PRIVATE,null);
-                    database.execSQL("DELETE FROM books WHERE name LIKE id;");
+                    database.execSQL("DELETE FROM books WHERE "+MainActivity.bookDetail.getId()+" LIKE id;");
+
+                    onBackPressed();
+
 
                 } catch (SQLException e) {
                     System.out.println(Arrays.toString(e.getStackTrace()));
@@ -118,4 +127,5 @@ public class BookActivity extends AppCompatActivity {
         alert.show();
 
     }
+
 }

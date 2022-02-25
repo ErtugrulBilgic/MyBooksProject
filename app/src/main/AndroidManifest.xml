@@ -12,12 +12,12 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.MyBooksProject">
         <activity
-                android:name=".BookActivity"
+                android:name=".activities.BookActivity"
                 android:label="@string/book_name"
                 android:exported="true"
                 android:theme="@style/Theme.MyBooksProject2"/>
         <activity
-                android:name=".MainActivity"
+                android:name=".activities.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

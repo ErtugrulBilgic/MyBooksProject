@@ -1,4 +1,4 @@
-package com.examples.mybooksproject;
+package com.examples.mybooksproject.classes;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,15 +12,26 @@ public class Book {
     private String name;
     private String authorName;
     private String description;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private Bitmap pic;
 
     Book(){}
 
-    public Book(String name, String authorName, String description, Bitmap pic) {
+    public Book(String name, String authorName, String description, Bitmap pic,int id) {
         this.name = name;
         this.authorName = authorName;
         this.description = description;
         this.pic = pic;
+        this.id = id;
     }
 
     public String getName() {
@@ -60,6 +71,7 @@ public class Book {
         ArrayList<String> authorNames = new ArrayList<String>();
         ArrayList<String> descriptions = new ArrayList<String>();
         ArrayList<Bitmap> pics = new ArrayList<Bitmap>();
+        ArrayList<Integer> ids = new ArrayList<Integer>();
 
         try {
             SQLiteDatabase database = context.openOrCreateDatabase("Books", Context.MODE_PRIVATE,null);
@@ -69,6 +81,7 @@ public class Book {
             int authorNameIndex = cursor.getColumnIndex("authorName");
             int descriptionIndex = cursor.getColumnIndex("description");
             int picIndex = cursor.getColumnIndex("bookPic");
+            int idIndex = cursor.getColumnIndex("id");
 
             while(cursor.moveToNext()){
                 names.add(cursor.getString(nameIndex));
@@ -77,12 +90,13 @@ public class Book {
                 byte[] picFromServer = cursor.getBlob(picIndex);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(picFromServer,0, picFromServer.length);
                 pics.add(bitmap);
+                ids.add(cursor.getInt(idIndex));
 
             }
             cursor.close();
 
             for (int i = 0 ;i < names.size(); i++){
-                Book book = new Book(names.get(i), authorNames.get(i), descriptions.get(i), pics.get(i) );
+                Book book = new Book(names.get(i), authorNames.get(i), descriptions.get(i), pics.get(i),ids.get(i));
                 books.add(book);
             }
 
